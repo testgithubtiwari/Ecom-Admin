@@ -115,15 +115,15 @@ class _MainPageState extends State<MainPage> {
                   Container(
                     padding: EdgeInsets.all(size.width * 0.03),
                     width: size.width * 0.80,
-                    height: size.width * 0.90,
+                    height: size.height * 0.50,
                     decoration: BoxDecoration(
                       color: Colors.green,
                       border: Border.all(width: 1, color: Colors.amberAccent),
                       borderRadius: BorderRadius.circular(size.width * 0.04),
                     ),
                     child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Center(
                           child: Text(

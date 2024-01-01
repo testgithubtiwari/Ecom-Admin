@@ -157,6 +157,12 @@ class _UserContainerState extends State<UserContainer> {
 
       if (response.statusCode == 200) {
         // Handle the success response
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User is Blocked!'),
+            backgroundColor: Color.fromARGB(255, 243, 33, 33),
+          ),
+        );
         print('Post request successful');
       } else {
         // Handle the error response
@@ -313,12 +319,6 @@ class _UserContainerState extends State<UserContainer> {
                   : ElevatedButton(
                       onPressed: () {
                         blockUser(widget.userId);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('User is Blocked!'),
-                            backgroundColor: Color.fromARGB(255, 243, 33, 33),
-                          ),
-                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(

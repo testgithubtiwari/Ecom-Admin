@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902252611984",
+    "project_id": "ritikpushnotifications",
+    "storage_bucket": "ritikpushnotifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902252611984:android:b746a77acaef1cbd6e0b15",
+        "android_client_info": {
+          "package_name": "com.ritik.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgYLBEGi5_gK5rQhTven_65S64AEfJ25w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
