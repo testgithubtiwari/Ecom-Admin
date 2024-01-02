@@ -1,12 +1,15 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:admin/auth/authprovider.dart';
+import 'package:admin/auth/login.dart';
 import 'package:admin/users/get_all_users.dart';
+import 'package:admin/users/update_users.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,9 +20,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late String userId;
+  String role = '';
   Map<String, dynamic> userData = {};
   late GlobalKey<RefreshIndicatorState> refreshKey;
   String name = '';
+  String token = '';
   String email = '';
   String mobile = '';
   @override
@@ -29,12 +34,38 @@ class _MainPageState extends State<MainPage> {
     var authProvider = Provider.of<AuthProvider>(context, listen: false);
     userId = authProvider.userId ?? '';
     fetchProfile(userId);
+    fetchToken();
   }
 
   void updateUI() {
     if (mounted) {
       setState(() {});
     }
+  }
+
+  void fetchToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token')!;
+  }
+
+  Future<void> clearToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+  }
+
+  void logout() async {
+    await clearToken();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'You have successfully Logged out!',
+        ),
+        backgroundColor: Colors.blue,
+      ),
+    );
+    // Navigate to the login screen
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const Login()));
   }
 
   Future<Map<String, dynamic>> fetchProfile(String userId) async {
@@ -51,6 +82,7 @@ class _MainPageState extends State<MainPage> {
         name = userData['Firstname'] + " " + userData['Lastname'];
         mobile = userData['mobile'];
         email = userData['email'];
+        role = userData['role'];
         print(name);
         print(mobile);
         print(email);
@@ -176,13 +208,7 @@ class _MainPageState extends State<MainPage> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'This functionality not completed yet!'),
-                                    backgroundColor: Colors.blue,
-                                  ),
-                                );
+                                logout();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(132, 255,
@@ -199,18 +225,27 @@ class _MainPageState extends State<MainPage> {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'This functionality not completed yet!'),
-                                    backgroundColor: Colors.blue,
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateUsers(
+                                      firstName: userData['Firstname'],
+                                      id: userId,
+                                      token: token,
+                                      lastName: userData['Lastname'],
+                                      mobile: mobile,
+                                      role: role,
+                                      emailId: email,
+                                    ),
                                   ),
                                 );
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const UpdateProfile()));
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //   const SnackBar(
+                                //     content: Text(
+                                //         'This functionality not completed yet!'),
+                                //     backgroundColor: Colors.blue,
+                                //   ),
+                                // );
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(132, 255,

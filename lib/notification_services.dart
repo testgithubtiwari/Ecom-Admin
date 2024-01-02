@@ -80,7 +80,7 @@ class LocalNotificationService {
           priority: Priority.high,
           styleInformation: styleInformation,
           playSound: true,
-          sound: const UriAndroidNotificationSound("assets/tunes/pop.mp3"),
+          // sound: const UriAndroidNotificationSound("assets/tunes/pop.mp3"),
           enableVibration: false,
         );
 

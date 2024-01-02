@@ -121,7 +121,6 @@ class _LoginState extends State<Login> {
     if (storedToken != null && storedUserId != null) {
       // Check if the token is still valid (you may need to implement this logic)
       bool isValid = await _isTokenValid(storedToken);
-
       if (isValid) {
         Provider.of<AuthProvider>(context, listen: false)
             .setUserId(storedUserId);
@@ -143,6 +142,13 @@ class _LoginState extends State<Login> {
           ),
         );
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('You have not any Token or you LogOut last time'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
