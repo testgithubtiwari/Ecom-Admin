@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PhoneAdd extends StatefulWidget {
-  const PhoneAdd({super.key});
+  // final void Function(String) onVerificationIdReceived;
+  const PhoneAdd({
+    Key? key,
+  }) : super(key: key);
 
-  static String verify = "";
+  // static String verify = "";
 
   @override
   State<PhoneAdd> createState() => _PhoneAddState();
@@ -139,11 +142,14 @@ class _PhoneAddState extends State<PhoneAdd> {
                           (PhoneAuthCredential credential) {},
                       verificationFailed: (FirebaseAuthException e) {},
                       codeSent: (String verificationId, int? resendToken) {
-                        PhoneAdd.verify = verificationId;
+                        // PhoneAdd.verify = verificationId;
+                        // widget.onVerificationIdReceived(verificationId);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const OtpVerification()));
+                                builder: (context) => OtpVerification(
+                                      verificationId: verificationId,
+                                    )));
                       },
                       codeAutoRetrievalTimeout: (String verificationId) {},
                     );

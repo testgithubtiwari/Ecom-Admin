@@ -9,7 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerification extends StatefulWidget {
-  const OtpVerification({super.key});
+  final String verificationId;
+  const OtpVerification({required this.verificationId, super.key});
 
   @override
   State<OtpVerification> createState() => _OtpVerificationState();
@@ -133,10 +134,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                 width: size.width * 0.90,
                 child: ElevatedButton(
                   onPressed: () async {
+                    print(code);
+                    print(widget.verificationId);
                     try {
                       PhoneAuthCredential credential =
                           PhoneAuthProvider.credential(
-                        verificationId: PhoneAdd.verify,
+                        verificationId: widget.verificationId,
                         smsCode: code,
                       );
                       await auth.signInWithCredential(credential);
