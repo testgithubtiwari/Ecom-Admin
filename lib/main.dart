@@ -2,6 +2,7 @@
 
 import 'package:admin/auth/authprovider.dart';
 import 'package:admin/auth/login.dart';
+import 'package:admin/auth/phone_add.dart';
 import 'package:admin/notification_services.dart';
 import 'package:admin/subscribetoadminnews.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: PhoneAdd(),
     );
   }
 }
