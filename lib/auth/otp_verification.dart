@@ -136,14 +136,27 @@ class _OtpVerificationState extends State<OtpVerification> {
                     try {
                       PhoneAuthCredential credential =
                           PhoneAuthProvider.credential(
-                              verificationId: PhoneAdd.verify, smsCode: code);
+                        verificationId: PhoneAdd.verify,
+                        smsCode: code,
+                      );
                       await auth.signInWithCredential(credential);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Login Successful'),
+                          backgroundColor: Color.fromARGB(255, 14, 109, 18),
+                        ),
+                      );
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const MainPage()));
                     } catch (err) {
-                      print('wrong otp');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Wrong OTP'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
