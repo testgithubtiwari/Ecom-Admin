@@ -48,8 +48,7 @@ class _UpdateUsersState extends State<UpdateUsers> {
 
   Future<void> updateUser(String userId, String token) async {
     try {
-      String apiUrl =
-          'http://192.168.43.207:5000/api/user/edit-user?id=$userId';
+      String apiUrl = 'http://172.31.46.143:5000/api/user/edit-user?id=$userId';
       print(apiUrl);
 
       Map<String, dynamic> userData = {

@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
 
   Future<void> login(String email, String password) async {
     isLoading = true;
-    const String url = 'http://192.168.43.207:5000/api/user/login';
+    const String url = 'http://172.31.46.143:5000/api/user/login';
 
     Map<String, dynamic> data = {
       'email': email,
@@ -154,7 +154,7 @@ class _LoginState extends State<Login> {
 
   Future<bool> _isTokenValid(String token) async {
     final String validateTokenUrl =
-        'http://192.168.43.207:5000/api/user/check-token-validity?token=$token';
+        'http://172.31.46.143:5000/api/user/check-token-validity?token=$token';
 
     try {
       final response = await http.post(

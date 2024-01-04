@@ -43,7 +43,7 @@ class _GetAllUsersState extends State<GetAllUsers> {
 
   Future<void> fetchData() async {
     const String apiUrl =
-        'http://192.168.43.207:5000/api/user/getusers'; // Replace with your API endpoint
+        'http://172.31.46.143:5000/api/user/getusers'; // Replace with your API endpoint
 
     try {
       final response = await http.get(Uri.parse(apiUrl));

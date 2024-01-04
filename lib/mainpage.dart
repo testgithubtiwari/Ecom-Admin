@@ -69,7 +69,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<Map<String, dynamic>> fetchProfile(String userId) async {
-    String profile = 'http://192.168.43.207:5000/api/user/profile?id=$userId';
+    String profile = 'http://172.31.46.143:5000/api/user/profile?id=$userId';
 
     try {
       final response = await http.get(

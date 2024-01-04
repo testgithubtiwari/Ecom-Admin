@@ -36,7 +36,7 @@ class _RegisterState extends State<Register> {
     String lastName,
     String mobile,
   ) async {
-    const String url = 'http://192.168.43.207:5000/api/user/register';
+    const String url = 'http://172.31.46.143:5000/api/user/register';
     Map<String, dynamic> data = {
       'Firstname': firstName,
       'Lastname': lastName,
